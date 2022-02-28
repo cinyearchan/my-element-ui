@@ -1,1 +1,42 @@
 @import "config";
+
+@function selectorToString($selector) { // 转为字符串
+  $selector: inspect($selector);
+  $selector: str-slice($selector, 2, -2);
+  @return $selector;
+}
+
+@function containsModifier($selector) { // 是否包含指定字符
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, $modifier-separator) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function containsWhenFlag($selector) { // 是否包含状态标识
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, "." + $state-prefix) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function containsPseudoClass($selector) { // 是否包含伪类
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, ":") {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function hitAllSpecialNestRule($selector) { // 是否包含所有特殊嵌套规则
+  @return containsModifier($selector) or containsWhenFlag($selector) or
+    containsPseudoClass($selector);
+}

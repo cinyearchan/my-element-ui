@@ -11,7 +11,10 @@
   <body>
     <div id="app">
       {{ message }}
-      <el-card body-style="padding: 20px;">card</el-card>
+      <el-card body-style="padding: 20px;" shadow="hover">
+        <div slot="header">card header</div>
+        card
+      </el-card>
     </div>
     <script>
       var app = new Vue({
