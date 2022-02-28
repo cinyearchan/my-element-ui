@@ -7,11 +7,17 @@
 </template>
 
 <script>
-export default {
+module.exports = {
   name: 'ElCard',
   props: {
     bodyStyle: {},
-    shadow: {},
+    shadow: {
+      type: String
+    },
   }
 }
 </script>
+
+<style scoped>
+@import "../../theme-chalk/lib/card.css";
+</style>
