@@ -1,14 +1,17 @@
 <template>
-  <button>
-    abc{{size}}
-  </button>
+ <button>
+   size: {{size}}
+ </button>
 </template>
 
 <script>
-export default {
+module.exports = {
   name: 'ElButton',
   props: {
-    size: String
+    size: {
+      type: String,
+      default: 'default'
+    }
   }
 }
 </script>
