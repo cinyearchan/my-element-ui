@@ -1,7 +1,5 @@
 <template>
- <button>
-   size: {{size}}
- </button>
+  <button>size: {{ size }}</button>
 </template>
 
 <script>
