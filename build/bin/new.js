@@ -15,23 +15,23 @@ const Files = [
   {
     filename: "index.js",
     content: `import ${ComponentName} from './src/main';
-      /* istanbul ignore next */
-      ${ComponentName}.install = function (Vue) {
-        Vue.component(${ComponentName}.name, ${ComponentName});
-      };
+/* istanbul ignore next */
+${ComponentName}.install = function (Vue) {
+  Vue.component(${ComponentName}.name, ${ComponentName});
+};
 
-      export default ${ComponentName};`,
+export default ${ComponentName};`,
   },
   {
     filename: "src/main.vue",
     content: `<template>
-        <div class="el-${componentname}">
-      </template>
-      <script>
-        export default {
-          name: 'El${ComponentName}'
-        }
-      </script>`,
+  <div class="el-${componentname}"></div>
+</template>
+<script>
+  export default {
+    name: 'El${ComponentName}'
+  }
+</script>`,
   },
   {
     filename: path.join(
@@ -39,12 +39,11 @@ const Files = [
       `${componentname}.scss`
     ),
     content: `@import "mixins/mixins";
-      @import "common/var";
+@import "common/var";
 
-      @include b(${componentname}) {
+@include b(${componentname}) {
 
-      }
-    `,
+}`,
   },
 ];
 
@@ -68,7 +67,7 @@ const sassPath = path.join(
 const sassImportText = `${fs.readFileSync(
   sassPath,
   "utf8"
-)}@import "./${componentname}.scss";}`;
+)}@import "./${componentname}.scss";`;
 fileSave(sassPath).write(sassImportText, "utf8").end("\n");
 
 // 创建 package
