@@ -27,10 +27,11 @@ export default ${ComponentName};`,
     content: `<template>
   <div class="el-${componentname}"></div>
 </template>
+
 <script>
-  export default {
-    name: 'El${ComponentName}'
-  }
+export default {
+  name: 'El${ComponentName}'
+}
 </script>`,
   },
   {
