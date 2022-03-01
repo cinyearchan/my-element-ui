@@ -5,7 +5,7 @@ if (!process.argv[2]) {
 
 const path = require("path");
 const fs = require("fs");
-const fileSave = reuqire("file-save");
+const fileSave = require("file-save");
 const uppercamelcase = require("uppercamelcase");
 const componentname = process.argv[2];
 const chineseName = process.argv[3] || componentname;
@@ -26,7 +26,25 @@ const Files = [
     filename: "src/main.vue",
     content: `<template>
         <div class="el-${componentname}">
-      </template>`,
+      </template>
+      <script>
+        export default {
+          name: 'El${ComponentName}'
+        }
+      </script>`,
+  },
+  {
+    filename: path.join(
+      "../../packages/theme-chalk/src",
+      `${componentname}.scss`
+    ),
+    content: `@import "mixins/mixins";
+      @import "common/var";
+
+      @include b(${componentname}) {
+
+      }
+    `,
   },
 ];
 
@@ -52,3 +70,10 @@ const sassImportText = `${fs.readFileSync(
   "utf8"
 )}@import "./${componentname}.scss";}`;
 fileSave(sassPath).write(sassImportText, "utf8").end("\n");
+
+// 创建 package
+Files.forEach((file) => {
+  fileSave(path.join(PackagePath, file.filename))
+    .write(file.content, "utf8")
+    .end("\n");
+});
