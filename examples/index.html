@@ -7,14 +7,16 @@
     <title>test</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://unpkg.com/http-vue-loader"></script>
+    <link rel="stylesheet" href="../packages/theme-chalk/lib/alert.css">
   </head>
   <body>
     <div id="app">
       {{ message }}
-      <el-card body-style="padding: 20px;" shadow="hover">
+      <!-- <el-card body-style="padding: 20px;" shadow="hover">
         <div slot="header">card header</div>
         card
-      </el-card>
+      </el-card> -->
+      <el-alert title="abcd" type="error"></el-alert>
     </div>
     <script>
       var app = new Vue({
@@ -23,7 +25,8 @@
           message: "hello world",
         },
         components: {
-          ElCard: httpVueLoader("../packages/card/src/main.vue"),
+          // ElCard: httpVueLoader("../packages/card/src/main.vue"),
+          ElAlert: httpVueLoader("../packages/alert/src/main.vue"),
         },
       });
     </script>

@@ -1,7 +1,7 @@
 <template>
   <div
     class="el-alert"
-    :class="[typeClass]"
+    :class="[typeClass, 'is-' + effect]"
   >
     <div class="el-alert__content">
       <span>
@@ -12,7 +12,8 @@
 </template>
 
 <script>
-export default {
+
+module.exports = {
   name: 'ElAlert',
   props: {
     title: {
@@ -22,6 +23,10 @@ export default {
     type: {
       type: String,
       default: 'info'
+    },
+    effect: {
+      type: String,
+      default: 'light'
     }
   },
   computed: {
