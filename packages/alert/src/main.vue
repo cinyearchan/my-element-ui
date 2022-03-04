@@ -1,18 +1,35 @@
 <template>
   <div
     class="el-alert"
-    :class="[typeClass, 'is-' + effect]"
+    :class="[typeClass, center ? 'is-center' : '', 'is-' + effect]"
+    v-show="visible"
+    role="alert"
   >
+    <i class="el-alert__icon" :class="[iconClass, isBigIcon]" v-if="showIcon"></i>
     <div class="el-alert__content">
-      <span>
+      <span class="el-alert__title" :class="[isBoldTitle]" v-if="title || $slots.title">
         <slot name="title">{{ title }}</slot>
       </span>
-      <i class="el-alert__closebtn" :class="{ 'is-customed': closeText !== '', 'el-icon-close': closeText === '' }">{{closeText}}</i>
+      <p class="el-alert__description" v-if="$slots.default && !description">
+        <slot></slot>
+      </p>
+      <p class="el-alert__description" v-if="description && !$slots.default">{{ description }}</p>
+      <i
+        class="el-alert__closebtn"
+        :class="{ 'is-customed': closeText !== '', 'el-icon-close': closeText === '' }"
+        v-show="closable"
+        @click="close"
+      >{{ closeText }}</i>
     </div>
   </div>
 </template>
 
 <script>
+const TYPE_CLASSES_MAP = {
+  'success': 'el-icon-success',
+  'warning': 'el-icon-warning',
+  'error': 'el-icon-error'
+}
 
 export default {
   name: 'ElAlert',
@@ -27,11 +44,35 @@ export default {
     },
     effect: {
       type: String,
-      default: 'light'
+      default: 'light',
+      validator(value) {
+        return ['light', 'dark'].indexOf(value) !== -1
+      }
+    },
+    description: {
+      type: String,
+      default: ''
+    },
+    closable: {
+      type: Boolean,
+      default: true
     },
     closeText: {
       type: String,
       default: ''
+    },
+    center: Boolean,
+    showIcon: Boolean
+  },
+  data() {
+    return {
+      visible: true
+    }
+  },
+  methods: {
+    close() {
+      this.visible = false
+      this.$emit('close')
     }
   },
   computed: {
@@ -39,7 +80,7 @@ export default {
       return `el-alert--${this.type}`;
     },
     iconClass() {
-      return `el-alert__icon--${this.type}`;
+      return TYPE_CLASSES_MAP[this.type] || 'el-icon-info';
     },
     isBigIcon() {
       return this.description || this.$slots.default ? 'is-big' : '';

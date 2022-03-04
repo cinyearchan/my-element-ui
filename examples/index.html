@@ -16,8 +16,8 @@
         <div slot="header">card header</div>
         card
       </el-card> -->
-      <!-- <el-alert title="abcd" type="error" effect="dark" close-text="x"></el-alert> -->
-      <el-icon name="coffee"></el-icon>
+      <el-alert title="abcd" type="error" effect="dark" close-text="x" description="close the alert" :center="true" :show-icon="true"></el-alert>
+      <!-- <el-icon name="coffee"></el-icon> -->
     </div>
     <script>
       var app = new Vue({
@@ -27,8 +27,8 @@
         },
         components: {
           // ElCard: httpVueLoader("../packages/card/src/main.vue"),
-          // ElAlert: httpVueLoader("../packages/alert/src/main.vue"),
-          ElIcon: httpVueLoader("../packages/icon/src/main.vue"),
+          ElAlert: httpVueLoader("../packages/alert/src/main.vue"),
+          // ElIcon: httpVueLoader("../packages/icon/src/main.vue"),
         },
       });
     </script>
