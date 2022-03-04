@@ -14,7 +14,7 @@
 
 <script>
 
-module.exports = {
+export default {
   name: 'ElAlert',
   props: {
     title: {
