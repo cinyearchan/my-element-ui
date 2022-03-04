@@ -7,7 +7,7 @@
     <title>test</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://unpkg.com/http-vue-loader"></script>
-    <link rel="stylesheet" href="../packages/theme-chalk/lib/alert.css">
+    <link rel="stylesheet" href="../packages/theme-chalk/lib/index.css">
   </head>
   <body>
     <div id="app">
@@ -16,7 +16,8 @@
         <div slot="header">card header</div>
         card
       </el-card> -->
-      <el-alert title="abcd" type="error" effect="dark" close-text="x"></el-alert>
+      <!-- <el-alert title="abcd" type="error" effect="dark" close-text="x"></el-alert> -->
+      <el-icon name="coffee"></el-icon>
     </div>
     <script>
       var app = new Vue({
@@ -26,7 +27,8 @@
         },
         components: {
           // ElCard: httpVueLoader("../packages/card/src/main.vue"),
-          ElAlert: httpVueLoader("../packages/alert/src/main.vue"),
+          // ElAlert: httpVueLoader("../packages/alert/src/main.vue"),
+          ElIcon: httpVueLoader("../packages/icon/src/main.vue"),
         },
       });
     </script>
