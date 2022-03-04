@@ -7,6 +7,7 @@
       <span>
         <slot name="title">{{ title }}</slot>
       </span>
+      <i class="el-alert__closebtn" :class="{ 'is-customed': closeText !== '', 'el-icon-close': closeText === '' }">{{closeText}}</i>
     </div>
   </div>
 </template>
@@ -27,6 +28,10 @@ module.exports = {
     effect: {
       type: String,
       default: 'light'
+    },
+    closeText: {
+      type: String,
+      default: ''
     }
   },
   computed: {

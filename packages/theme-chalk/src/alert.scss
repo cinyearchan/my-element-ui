@@ -80,4 +80,19 @@
       color: $--color-white;
     }
   }
+
+  @include e(closebtn) {
+    font-size: $--alert-close-font-size;
+    opacity: 1;
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    cursor: pointer;
+  
+    @include when(customed) {
+      font-style: normal;
+      font-size: $--alert-close-customed-font-size;
+      top: 9px;
+    }
+  }
 }
